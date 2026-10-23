@@ -19,14 +19,12 @@
   - [2. Automated Escrow-Locked Deposit Settlement (AEDS-CO)](#2-automated-escrow-locked-deposit-settlement-aeds-co)
   - [3. Contextual AI Inspection Synthesis & SHA-256 Hashing (CAIS-EH)](#3-contextual-ai-inspection-synthesis--sha-256-evidence-hashing-cais-eh)
 - [Stakeholder Empathy Models](#-stakeholder-empathy-models)
-- [User Interface Showcase](#-user-interface-showcase)
 - [UN Sustainable Development Goals (SDGs)](#-un-sustainable-development-goals-sdgs)
 - [Technology Stack](#-technology-stack)
 - [Repository Structure](#-repository-structure)
 - [Installation & Getting Started](#-installation--getting-started)
 - [Demo Credentials](#-demo-credentials)
 - [Core API Routes](#-core-api-routes)
-- [Academic Publication & Citation](#-academic-publication--citation)
 
 ---
 
@@ -50,27 +48,27 @@ The rapid growth of the collaborative sharing economy has created unprecedented 
 ### 1. Layered System Architecture
 Equipora utilizes a decoupled 4-tier architecture comprising Presentation, REST API Services, Real-Time Communication Channels, and Distributed Persistence / AI Integrations:
 
-![Layered System Architecture](docs/images/fig_architecture.png)
+![Layered System Architecture](images/fig_architecture.png)
 
 ### 2. Operational Flowchart (Rental Lifecycle)
 The full equipment custody and escrow lifecycle transitions deterministically across five key phases: Reservation, Provider Authorization, Handover & Inspection Hashing, Return Condition Audit, and Escrow Liquidation:
 
-![Operational Flowchart of Rental Lifecycle](docs/images/fig_flowchart.png)
+![Operational Flowchart of Rental Lifecycle](images/fig_flowchart.png)
 
 ### 3. Layered Module Interaction & Data Flow
 The high-level data flow illustrates the seamless coordination among the KYC Engine, Inventory Manager, Scheduling Lock, AI Inspection Synthesizer, and Escrow Engine:
 
-![Layered Module Interaction and Data Flow Diagram](docs/images/fig_dataflow.png)
+![Layered Module Interaction and Data Flow Diagram](images/fig_dataflow.png)
 
 ### 4. Database Collections Schema & Relational Data Model
 Normalized MongoDB document schemas linking Users, Products (with 6-angle views and Trust Passports), Bookings, and Inspection Audit Records:
 
-![MongoDB Database Schema and Data Model](docs/images/fig_database_schema.png)
+![MongoDB Database Schema and Data Model](images/fig_database_schema.png)
 
 ### 5. Razorpay Payment Gateway & Escrow Locking Workflow
 The escrow protocol locks security collateral at booking creation and releases condition-adjusted reversals instantly upon verified return:
 
-![Razorpay Payment Gateway and Escrow Locking Workflow](docs/images/payment.png)
+![Razorpay Payment Gateway and Escrow Locking Workflow](images/payment.png)
 
 ---
 
@@ -123,27 +121,8 @@ To design intuitive interactions for both sides of the sharing economy, detailed
 
 | Equipment Renter (Borrower) | Equipment Provider (Lender) |
 | :---: | :---: |
-| ![Empathy Map Renter](docs/images/fig_empathy_renter.png) | ![Empathy Map Provider](docs/images/fig_empathy_provider.png) |
+| ![Empathy Map Renter](images/fig_empathy_renter.png) | ![Empathy Map Provider](images/fig_empathy_provider.png) |
 | *Focus: Low collateral, instant refund, transparent condition verification.* | *Focus: Verified identities, guaranteed damage protection, hassle-free returns.* |
-
----
-
-## 💻 User Interface Showcase
-
-| Marketplace & Filter Catalog | Comprehensive Product Hub & Trust Passport |
-| :---: | :---: |
-| ![Marketplace](docs/images/ui_marketplace.png) | ![Product Details](docs/images/ui_product_details.png) |
-| *Intuitive search with category filters, dynamic pricing, and verification badges.* | *Detailed 6-angle visual inspections, provider comparisons, and DTR-Scores.* |
-
-| User & Provider Dashboard | Real-Time In-App Messaging |
-| :---: | :---: |
-| ![Dashboard](docs/images/ui_dashboard.png) | ![Chat](docs/images/ui_chat.png) |
-| *Consolidated booking tracking, earnings overview, and rental status alerts.* | *Low-latency (<50ms) Socket.io communication with media sharing.* |
-
-| Provider Comparison Hub | Administrative KYC & Fleet Control |
-| :---: | :---: |
-| ![Provider Hub](docs/images/ui_provider_hub.png) | ![Admin Verification](docs/images/ui_admin_verification.png) |
-| *Compare rates, proximity, and trust scores across multiple verified providers.* | *Admin portal for approving KYC tiers, inspecting evidence, and arbitrating disputes.* |
 
 ---
 
@@ -194,10 +173,8 @@ Equipora/
 │   │   └── services/         # Axios API clients
 │   ├── index.html            # Main HTML document
 │   └── vite.config.js        # Vite bundler configuration
-├── docs/
-│   └── images/               # High-resolution architectural diagrams & UI captures
+├── images/                   # High-resolution architectural diagrams
 ├── .gitignore                # Production ignore file
-├── AGENTS.md                 # Antigravity IDE UI preservation rules
 └── README.md                 # Primary project documentation
 ```
 
@@ -306,25 +283,6 @@ After running `npm run seed`, you can authenticate with any of the following acc
 | `paymentController` | `POST` | `/api/payments/verify` | Signature validation & state transition |
 | `refundController` | `POST` | `/api/refunds/settle` | AEDS-CO deposit refund execution via UPI |
 | `adminController` | `GET` | `/api/admin/verifications` | Audit queue for KYC submissions & product approvals |
-
----
-
-## 📚 Academic Publication & Citation
-
-This platform and its algorithmic models are presented in the research paper:
-
-> **A. Muthuramalingam and K. Rajkumar**, *"EQUIPORA: Trust-First Peer-to-Peer Equipment Rental and Fleet Lifecycle Management Platform,"* Department of Computer Science and Engineering, National Engineering College, Kovilpatti, Tamil Nadu, India, 2026.
-
-### BibTeX
-```bibtex
-@inproceedings{muthuramalingam2026equipora,
-  author    = {A. Muthuramalingam and K. Rajkumar},
-  title     = {EQUIPORA: Equipment Rental Platform with Dynamic Trust Scoring and Automated Escrow Settlement},
-  booktitle = {IEEE Conference on Collaborative Computing and Distributed Systems},
-  year      = {2026},
-  address   = {National Engineering College, Kovilpatti, Tamil Nadu, India}
-}
-```
 
 ---
 
