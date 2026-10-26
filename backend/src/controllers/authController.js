@@ -18,12 +18,15 @@ const generateToken = (res, userId) => {
     expiresIn: '30d'
   });
 
+  const isProduction = process.env.NODE_ENV === 'production';
   res.cookie('jwt', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== 'development',
-    sameSite: 'strict',
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     maxAge: 30 * 24 * 60 * 60 * 1000
   });
+
+  return token;
 };
 
 // @desc    Check if username is available
@@ -264,14 +267,15 @@ const loginUser = async (req, res) => {
         });
       }
 
-      generateToken(res, user._id);
+      const token = generateToken(res, user._id);
       res.json({
         _id: user._id,
         username: user.username,
         name: user.name,
         email: user.email,
         role: user.role,
-        kycStatus: user.kycStatus
+        kycStatus: user.kycStatus,
+        token: token
       });
     } else {
       res.status(401).json({ message: 'Invalid credentials' });
@@ -284,8 +288,11 @@ const loginUser = async (req, res) => {
 // @desc    Logout user / clear cookie
 // @route   POST /api/auth/logout
 const logoutUser = (req, res) => {
+  const isProduction = process.env.NODE_ENV === 'production';
   res.cookie('jwt', '', {
     httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     expires: new Date(0)
   });
   res.status(200).json({ message: 'Logged out successfully' });
